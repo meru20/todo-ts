@@ -71,7 +71,7 @@ import {todoData} from '../data/todoData';
         const updateTodo= (selectedTodo : Todo) => {
             
             try {
-                const updated = todoData.map((todo: Todo, index: number) => {
+                const updated = state.todos.map((todo: Todo, index: number) => {
                     if (selectedTodo === todo) {
                       return { ...todo, completed: !todo.completed };
                     }

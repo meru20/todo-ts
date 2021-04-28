@@ -4,7 +4,7 @@ import TodoListPage from '../pages/TodoListPage';
 import { useContext} from 'react';
 import {GlobalContext} from '../contex/ContextApi';
 const AppRouter = () => {
-    const { addTodos, todos,updateTodo} = useContext(GlobalContext)
+    const { addTodos, todos, updateTodo} = useContext(GlobalContext)
     return (
         <div className='container'>
       <Todo addTodos={addTodos}/>
