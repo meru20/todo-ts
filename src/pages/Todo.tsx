@@ -1,35 +1,52 @@
-import React, { FormEvent, useEffect, useContext,useState} from 'react';
+import * as React from 'react';
+import {  useEffect, useContext,useState} from 'react';
 import {GlobalContext} from '../contex/ContextApi';
 
-const Todo = () =>{
-    const { getTodos, todo,addTodos } = useContext(GlobalContext)
-    const [todoItem, setTodoItem] = useState<string>('');
+
+
+interface AddTodoProps {
+    addTodos: (newTodo: string) => void;
+    
+   
+    
+
+  }
+
+const Todo:React.FC<AddTodoProps>  = ({addTodos}) =>{
+    const { getTodos} = useContext(GlobalContext)
+     const [todoItem, setTodoItem] = useState<string>('');
     useEffect(() => {
         getTodos() ;
         
       },[])
+
+   
      
-         const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
+         const handleSubmit = (e: React.FormEvent, todoItem: Todo | any) => {
           e.preventDefault();
           addTodos(todoItem);
           console.log('added',todoItem);
-          console.log('todo',todo);
           setTodoItem('');
+          //console.log('todo',todo);
+         
         };
     return (
         <div id='todo'>
         <div className='row my-3'>
           <div className='col'>
-            <form action=''>
+            <form action='' onSubmit={(e) => handleSubmit(e, todoItem)}>
               <div className='input-group'>
                 <input
                   type='text'
                   className='form-control'
+                 
                   value={todoItem}
-                  onChange={e => setTodoItem(e.target.value)}
+                onChange={e => setTodoItem(e.target.value)}
+                  
+                   
                 />
                 <div className='input-group-append'>
-                  <button className='btn btn-secondary' onClick={handleSubmit} >
+                  <button className='btn btn-secondary' type='submit' >
                     Add
                   </button>
                 </div>
@@ -37,19 +54,7 @@ const Todo = () =>{
             </form>
           </div>
         </div>
-        <div className='row'>
-                <ul className='list-group'>
-                    {todo.map((t, index) => {
-                        return(
-                            <li className='list-group-item' key= {index}>
-                                {t.text}
-                            </li>
-                        )
-
-                    })}
-                    
-                </ul>
-            </div>
+        
       </div>
     
     );

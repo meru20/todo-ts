@@ -1,16 +1,15 @@
 import {GlobalProvider} from './contex/ContextApi';
-import Todo from './pages/Todo';
+import AppRouter from './router/AppRouter';
+
 import './App.css';
 
 
 const App = () =>{
   return (
     <GlobalProvider>
-       <div className='container'>
-      <Todo/>
-      
+      <AppRouter/>
 
-    </div>
+       
 
     </GlobalProvider>
    
